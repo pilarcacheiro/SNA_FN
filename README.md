@@ -1,2 +1,2 @@
 # SNA_FN
-Social Network Analysis
+Social Network Analysis - Florence Nightingale
