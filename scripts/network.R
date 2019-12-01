@@ -104,3 +104,7 @@ ggplot(brokerage.df.barplot,aes(x=Brokerage, y = Value,fill=Brokerage)) +
   theme(panel.border = element_rect(colour = "black"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(axis.title.x = element_blank(),axis.title.y = element_blank()) 
+
+###############################################################################################################################
+###############################################################################################################################
+
