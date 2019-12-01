@@ -1,0 +1,57 @@
+	Florence.Nightingale	Henry.Reeve	Helen.Richardson	John.C.Macdonald	Fanny.Nightingale	William.Nightingale	Parthenope.Nightingale	Henry.Harry.Bonham.Carter	Uncle.Octavius.Smith	Aunt.Jane.Smith	Aunt.Mai.Smith	Mary.Ann.Evans.George.Eliot	Mary.Clarke.Mohl	Charles.Bracebridge	Selina.Bracebridge	Sidney.Herbert	Liz.Herbert	Richard.Milnes	Alexis.Soyer	Lady.Charlotte.Canning	Elizabeth.Blackwell	Queen.Victoria	Sir.James.Clark	John.Sutherland	Lord.Panmure	Dr.William.Farr	William.Rathbone	Angelique.Lucille.Pringle	Rachel.Williams	Harriet.Martineau	Adolphe.Quetelet	Benjamin.Jowett	Sir.Francis.Galton	Sir.Alexander.Tulloch	Sir.John.McNeill	Charles.Babbage	Elizabeth.Gaskell	Edwin.Chadwick	Aunt.Julia.Smith	Lord.Palmerston	Lord.Shaftesbury.Ashley	Dr.William.Bowman	Dr.Samuel.Howe	Ada.Lovelace	Julia.Ward.Howe	John.Stuart.Mill	Helen.Taylor	Sir.Douglas.Strutt.Galton	Lady.Galton.Marianne.Nicholson	Julius.Mohl	Mary.Somerville	Hilary.Bonham.Carter	Arthur.Hugh.Clough	Mary.Clare.Moore	Charles.Dickens	Aunt.Patty.Smith
+Florence.Nightingale	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Henry.Reeve	1	1	1	1	1	1	1		1	1	1		1	1	1	1		1					1							1									1							1				1	1				1	1
+Helen.Richardson	1	1	1		1	1	1				1																												1																	
+John.C.Macdonald	1	1		1										1																																										
+Fanny.Nightingale	1	1	1		1	1	1	1				1	1																			1							1	1			1		1			1	1							
+William.Nightingale	1	1	1		1	1	1	1				1	1																			1							1	1			1		1			1	1							
+Parthenope.Nightingale	1	1	1		1	1	1	1				1		1	1		1			1												1					1		1	1			1	1	1			1	1							
+Henry.Harry.Bonham.Carter	1				1	1	1	1																				1														1						1	1			1				
+Uncle.Octavius.Smith	1	1			1	1	1	1	1	1	1																																					1	1			1				
+Aunt.Jane.Smith	1	1			1	1	1	1	1	1	1																																					1	1			1				
+Aunt.Mai.Smith	1	1	1		1	1	1	1	1	1	1	1																				1							1									1	1			1	1	1		
+Mary.Ann.Evans.George.Eliot	1				1	1	1				1	1	1					1												1		1					1		1											1					1	
+Mary.Clarke.Mohl	1	1			1	1	1					1	1	1	1			1												1		1					1		1											1		1			1	1
+Charles.Bracebridge	1			1	1	1	1						1	1	1	1		1					1									1			1			1				1											1			
+Selina.Bracebridge	1				1	1	1						1	1	1	1	1		1													1												1												
+Sidney.Herbert	1	1												1	1	1	1			1		1				1						1		1						1								1					1			
+Liz.Herbert	1						1							1	1	1	1		1	1												1																								
+Richard.Milnes	1	1		1	1	1	1	1	1	1	1	1	1	1	1	1		1		1		1	1							1		1					1	1	1	1	1	1	1		1	1				1		1	1		1	
+Alexis.Soyer	1													1	1		1		1					1	1									1	1						1															
+Lady.Charlotte.Canning	1						1								1	1	1	1		1		1	1																	1																
+Elizabeth.Blackwell	1																				1					1																		1		1										
+Queen.Victoria	1															1		1		1		1										1								1				1												
+Sir.James.Clark	1	1			1	1	1							1		1		1		1		1	1	1	1										1					1		1											1		1	
+John.Sutherland	1																		1			1	1	1	1	1					1									1															1	
+Lord.Panmure	1															1			1			1	1	1	1															1																
+Dr.William.Farr	1															1					1			1		1					1		1	1		1		1						1								1	1			
+William.Rathbone	1																										1																									1	1			
+Angelique.Lucille.Pringle	1							1																				1	1																							1				
+Rachel.Williams	1																											1	1																											
+Harriet.Martineau	1	1										1						1												1						1			1				1	1	1	1	1				1	1	1		1	
+Adolphe.Quetelet	1																							1		1					1		1			1								1		1					1		1			
+Benjamin.Jowett	1				1	1	1				1	1	1	1	1	1	1	1				1										1	1				1			1	1					1				1	1	1	1		1	
+Sir.Francis.Galton	1																	1								1					1	1	1							1		1		1				1	1							
+Sir.Alexander.Tulloch	1															1			1							1								1	1					1																
+Sir.John.McNeill	1													1		1		1	1				1											1	1					1		1											1			
+Charles.Babbage	1				1	1																				1				1	1					1		1			1			1		1					1		1		1	
+Elizabeth.Gaskell	1						1					1	1					1														1					1									1	1			1		1	1		1	1
+Edwin.Chadwick	1													1				1								1										1		1			1					1									1	
+Aunt.Julia.Smith	1	1	1		1	1	1		1	1	1	1	1					1												1									1									1	1		1	1	1			
+Lord.Palmerston	1				1	1	1									1		1		1		1	1	1	1							1	1	1	1					1	1							1							1	
+Lord.Shaftesbury.Ashley	1															1		1	1													1				1		1		1	1					1									1	
+Dr.William.Bowman	1				1	1	1	1						1		1		1					1										1		1							1											1			
+Dr.Samuel.Howe	1				1	1	1											1												1													1		1										1	
+Ada.Lovelace	1						1								1						1	1				1				1	1		1			1								1							1				1	
+Julia.Ward.Howe	1				1	1	1											1												1													1		1											
+John.Stuart.Mill	1	1																1			1									1	1	1				1	1	1			1					1	1				1				1	
+Helen.Taylor	1																													1							1	1								1	1				1					
+Sir.Douglas.Strutt.Galton	1				1	1	1	1	1	1	1					1																1							1	1								1								
+Lady.Galton.Marianne.Nicholson	1				1	1	1	1	1	1	1																					1							1										1							
+Julius.Mohl	1	1			1	1	1					1	1	1	1			1																			1													1		1				
+Mary.Somerville	1	1																												1	1	1				1			1					1		1	1				1					1
+Hilary.Bonham.Carter	1				1	1	1	1	1	1	1		1					1								1	1	1		1		1					1		1											1		1	1			1
+Arthur.Hugh.Clough	1				1	1	1	1	1	1	1			1	1	1		1					1			1	1			1	1	1			1	1	1		1			1			1			1				1	1			
+Mary.Clare.Moore	1										1																																											1		
+Charles.Dickens	1	1										1	1					1				1	1	1						1		1				1	1	1		1			1	1		1									1	
+Aunt.Patty.Smith	1	1			1	1	1	1	1	1	1		1																								1		1												1	1				1
