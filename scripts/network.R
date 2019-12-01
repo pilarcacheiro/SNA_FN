@@ -74,11 +74,8 @@ legend("bottomleft", legend=c("Female", "Male"),
 
 detach("package:igraph") 
 fnnet2 <- asNetwork(fnnet)
-brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$raw.nli
 
-# normalized scores
-brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$z.nli   
-# Normalized, rounded to 2 digits
+# normalized scores rounded to 2 digits
 round(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$z.nli, 2) 
 
 brokerage.df <- as.data.frame(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$raw.nli)
