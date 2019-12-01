@@ -23,7 +23,7 @@ fnm <- as.matrix(fn)
 
 fnnet <- graph.adjacency(fnm,mode="undirected",weighted=TRUE,diag=FALSE)
 
-## import attributes #############################################################################################################
+## import attributes ##########################################################################################################
 
 
 ## network with attributes
