@@ -31,7 +31,7 @@ fnnet <- graph.adjacency(fnm,mode="undirected",weighted=TRUE,diag=FALSE)
 
 V(fnnet)$name
 
-attributes <- read.delim(paste0(fn.dir,"FN_SNA_gender.txt"),stringsAsFactors = F) 
+attributes <- read.delim(paste0(fn.dir,"FN_SNA_attributes.txt"),stringsAsFactors = F) 
 
 V(fnnet)$gender <- as.character(attributes$gender[match(V(fnnet)$name,attributes$name)])
 V(fnnet)$shape <- ifelse(V(fnnet)$gender=="F","square", "circle")
