@@ -50,10 +50,10 @@ fnnet_com_lou <- cluster_louvain(fnnet)
 fnnet_com_lou$membership
 fnnet_com_lou$names
 
-V(fnnet)$color <- fnnet_com_lou$membership
-V(fnnet)$color <- ifelse(V(fnnet)$color=="1","#E69F00",
-                         ifelse(V(fnnet)$color=="2","#CC79A7",
-                                ifelse(V(fnnet)$color=="3","#56B4E9", "#009E73")))
+V(fnnet)$membership <- fnnet_com_lou$membership
+V(fnnet)$color <- ifelse(V(fnnet)$membership=="1","#E69F00",
+                         ifelse(V(fnnet)$membership=="2","#CC79A7",
+                                ifelse(V(fnnet)$membership=="3","#56B4E9", "#009E73")))
 
 
 ## network plot ##########################################################################################################
@@ -75,35 +75,68 @@ legend("bottomleft", legend=c("Female", "Male"),
 detach("package:igraph") 
 fnnet2 <- asNetwork(fnnet)
 
-# normalized scores rounded to 2 digits
-round(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$z.nli, 2) 
+# raw and normalized scores rounded to 2 digits
 
-brokerage.df <- as.data.frame(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "gender"))$raw.nli)
-  
-brokerage.df.barplot  <- brokerage.df %>%
+brokerage.raw <- as.data.frame(round(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "membership"))$raw.nli, 2)) %>%
   rownames_to_column("Alter") %>%
-  arrange(-t) %>%
-  filter(t<1804 & t>50) %>%
   rename(Coordinator = w_I, Itinerant = w_O, Representative = b_IO, Gatekeeper = b_OI, Liaison = b_O) %>%
   select(-t) %>%
-  select(-Liaison) %>%
   gather("Brokerage","Value",-Alter) %>%
-  filter(Alter %in% c("Richard.Milnes","Parthenope.Nightingale","Arthur.Hugh.Clough","Aunt.Mai.Smith","Selina.Bracebridge"))
+  left_join(fnnet_membership.df,by=c("Alter" ="Name")) %>%
+  mutate(Membership = as.factor(Membership))
 
-## brokerage plot ##########################################################################################################
+  
+brokerage.norm <- as.data.frame(round(brokerage(fnnet2, cl=get.vertex.attribute(fnnet2, "membership"))$z.nli,2)) %>%
+  rownames_to_column("Alter") %>%
+  rename(Coordinator = w_I, Itinerant = w_O, Representative = b_IO, Gatekeeper = b_OI, Liaison = b_O) %>%
+  select(-t) %>%
+  gather("Brokerage","Value",-Alter) %>%
+  left_join(fnnet_membership.df,by=c("Alter" ="Name")) %>%
+  mutate(Membership = as.factor(Membership))
 
-ggplot(brokerage.df.barplot,aes(x=Brokerage, y = Value,fill=Brokerage)) + 
-  geom_bar(stat="identity") +
-  facet_wrap(~Alter,nrow=1) +
-  scale_fill_manual(values=c("#999999", "#F0E442", "#0072B2", "#009E73")) +
+## brokerage plots ##########################################################################################################
+
+values.raw <- brokerage.raw %>% group_by(Brokerage) %>% 
+  filter(Alter %in% c("Dr.William.Farr","Parthenope.Nightingale","Harriet.Martineau","Lord.Palmerston")) %>%
+  filter(Brokerage!="Itinerant")
+
+
+ggplot(brokerage.raw %>% group_by(Brokerage) %>% 
+         filter(!Value %in% boxplot(brokerage.raw$Value)$out) %>%
+         filter(Brokerage!="Itinerant"),aes(x=Membership, y = Value,fill=Membership)) + 
+  geom_boxplot(outlier.shape = NA) +
+  facet_wrap(~Brokerage,scales="free_y",ncol =2) +
+  scale_fill_manual(values=c("#E69F00", "#CC79A7", "#56B4E9", "#009E73")) +
   theme_bw() +
   theme(panel.grid.major = element_blank()) +
   theme(panel.grid.minor = element_blank()) + 
   theme(legend.position="none") +
   theme(strip.background = element_blank())+
   theme(panel.border = element_rect(colour = "black"))+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  theme(axis.title.x = element_blank(),axis.title.y = element_blank()) 
+  theme(axis.title.x = element_blank(),axis.title.y = element_blank())  +
+  geom_text(data = values.raw, aes(x = Membership, y = Value+5, label = Alter), size = 3) +
+  geom_point(data = values.raw, aes(x = Membership, y = Value))
+
+
+values.norm <- brokerage.norm %>% group_by(Brokerage) %>% 
+  filter(Alter %in% c("Dr.William.Farr","Parthenope.Nightingale","Harriet.Martineau","Lord.Palmerston")) %>%
+  filter(Brokerage!="Itinerant")
+
+ggplot(brokerage.norm %>% group_by(Brokerage) %>% 
+         filter(!Value %in% boxplot(brokerage.norm$Value)$out) %>%
+         filter(Brokerage!="Itinerant"),aes(x=Membership, y = Value,fill=Membership)) + 
+  geom_boxplot(outlier.shape = NA) +
+  facet_wrap(~Brokerage,scales="free_y",ncol =2) +
+  scale_fill_manual(values=c("#E69F00", "#CC79A7", "#56B4E9", "#009E73")) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank()) +
+  theme(panel.grid.minor = element_blank()) + 
+  theme(legend.position="none") +
+  theme(strip.background = element_blank())+
+  theme(panel.border = element_rect(colour = "black"))+
+  theme(axis.title.x = element_blank(),axis.title.y = element_blank())  +
+  geom_text(data = values.norm, aes(x = Membership, y = Value +1, label = Alter), size = 3) +
+  geom_point(data = values.norm, aes(x = Membership, y = Value))
 
 ###############################################################################################################################
 ###############################################################################################################################
