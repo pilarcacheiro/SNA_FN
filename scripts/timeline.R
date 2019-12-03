@@ -47,7 +47,7 @@ data <- data.frame(
             "color:orange",
             NA,
             "color:blue",
-            "color:blue",
+            "color:orange",
             "color:orange",
             NA,
             "color:orange",
