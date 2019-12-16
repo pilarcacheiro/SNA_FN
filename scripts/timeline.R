@@ -1,11 +1,12 @@
 library(timevis)
 
 data <- data.frame(
-  id = 1:18,
+  id = 1:19,
   content = c("Birth",
               "Mary Clarke acquaintance",
               "Selina Bracebridge acquaintance",
               "Liz Herbert acquaintance",
+              "Dr Elizabeth Blackwell acquaintance",
               "Cassandra",
               "A Portrait,Taken from Life by Ada Lovelace on FN",
               "Crimea visit",
@@ -24,6 +25,7 @@ data <- data.frame(
               "1839",
               "1847",
               "1848",
+              "1950",
               "1852",
               "1852",
               "1854",
@@ -38,8 +40,9 @@ data <- data.frame(
               "1874",
               "1907",
               "1910"),
-  end = c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA),
+  end = c(NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA),
   style = c(NA,
+            "color:blue",
             "color:blue",
             "color:blue",
             "color:blue",
