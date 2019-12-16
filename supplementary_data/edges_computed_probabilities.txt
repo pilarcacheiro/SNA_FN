@@ -1,0 +1,9 @@
+#computed probabilities 			
+group	FF	FM	MM
+total_edges	0.2525	0.2916	0.4968
+between_edges	0.251	0.39	0.3529
+within_edges	0.2488	0.4507	0.3
+cluster1	0.356	0.5	0.144
+cluster2	0.143	0.5	0.357
+cluster3	0.185	0.385	0.431
+cluster4	0.159	0.432	0.409
