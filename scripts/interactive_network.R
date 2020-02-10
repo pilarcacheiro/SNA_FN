@@ -121,11 +121,12 @@ fn.edges <- data.frame(from = c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 
 
 
-fn.network <- visNetwork(fn.nodes, fn.edges, height = "1000px", width = "100%") %>%
-  visIgraphLayout() 
+fn.egonet <- visNetwork(fn.nodes, fn.edges, height = "825px", width = "100%") %>%
+visNodes(scaling = list(label = list(enabled = T))) %>%
+visIgraphLayout() 
 
 
-visSave(fn.network, file = "fn.network.html")
+visSave(fn.network, file = "fn.egonet.html")
 
 
 
