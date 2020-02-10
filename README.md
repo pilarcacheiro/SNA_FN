@@ -5,7 +5,7 @@ Supplementary material complementing submitted article to Significance on the so
 
 [Pilar Cacheiro](https://github.com/pilarcacheiro)
 # Florence Nightingale egonet
-![Florence Nightingale egonet](../master/images/fn.egonet.html)
+![Florence Nightingale egonet](../master/images/fn.egonet.png)
 # References
 Bibliographical references justifying the connections between alters and ego (Florence Nightingale). Go to each of the alter's hyperlink to find the specific references connecting them to other alters.
 
