@@ -1,11 +1,14 @@
 # Social Network Analysis - Florence Nightingale
 Supplementary material complementing submitted article to Significance on the social networks of Florence Nightingale.
+
 # Contributors
 [Altea Lorenzo](https://github.com/altealo)
 
 [Pilar Cacheiro](https://github.com/pilarcacheiro)
+
 # Florence Nightingale egonet
-https://pilarcacheiro.github.io/SNA_FN/fn.egonet.html
+https://pilarcacheiro.github.io/SNA_FN/fn.egonet.html 
+
 # References
 Bibliographical references justifying, to the best of our knowledge, the connections between alters and ego (Florence Nightingale). 
 
