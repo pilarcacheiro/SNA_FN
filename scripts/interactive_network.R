@@ -124,7 +124,7 @@ legend.nodes <- data.frame (label = c("Female", "Male"),
            color.border=c("black","black"),color.background = c("white","white"))
 
 
-set.seed(10050)
+#set.seed(405)
 
 fn.egonet <- visNetwork(fn.nodes, fn.edges, height = "825px", width = "100%") %>%
 visNodes(scaling = list(label = list(enabled = T))) %>%
