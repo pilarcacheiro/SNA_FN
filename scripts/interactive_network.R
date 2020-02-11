@@ -119,10 +119,16 @@ fn.edges <- data.frame(from = c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
                               55,46,47,50,52,53,55,56,41,46,47,55,48,49,51,52,53,56,41,48,55,46,
                               55,53,45,55,51,55,53,47,51,55,51,53,52,56,53,56))
 
+legend.nodes <- data.frame (label = c("Female", "Male"),
+           shape = c( "square","triangle"),size = c(10,10),
+           color.border=c("black","black"),color.background = c("white","white"))
 
+
+set.seed(10050)
 
 fn.egonet <- visNetwork(fn.nodes, fn.edges, height = "825px", width = "100%") %>%
 visNodes(scaling = list(label = list(enabled = T))) %>%
+visLegend( addNodes = legend.nodes, useGroups = FALSE,width = 0.1) %>%
 visIgraphLayout() 
 
 
