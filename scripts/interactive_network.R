@@ -126,7 +126,7 @@ visNodes(scaling = list(label = list(enabled = T))) %>%
 visIgraphLayout() 
 
 
-visSave(fn.network, file = "fn.egonet.html")
+visSave(fn.egonet, file = "fn.egonet.html")
 
 
 
