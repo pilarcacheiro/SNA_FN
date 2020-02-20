@@ -8,6 +8,11 @@ Supplementary material complementing submitted article to Significance on the so
 
 # Egonet
 Interactive version: https://pilarcacheiro.github.io/SNA_FN/fn.egonet.html 
+Static version:
+![](images/fn.egonet.png)
+
+# Brokerage roles
+![](images/brokerage.plot.png)
 
 # Timeline
 ![](images/fn.timeline.png)
