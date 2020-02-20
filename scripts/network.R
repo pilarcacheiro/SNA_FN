@@ -37,7 +37,7 @@ V(fnnet)$label <- str_replace_all(V(fnnet)$name, "[.]", " ")
 
 fnnet.com.lou <- cluster_louvain(fnnet)
 
-fnnet.com.lou$names <- str_replace_all(fnnet_com_lou$names, "[.]", " ")
+fnnet.com.lou$names <- str_replace_all(fnnet.com.lou$names, "[.]", " ")
 
 V(fnnet)$membership <- fnnet.com.lou$membership
 V(fnnet)$color <- ifelse(V(fnnet)$membership=="1","#E69F00",
@@ -95,14 +95,14 @@ V(fnnet)$name <- V(fnnet)$label
 V(fnnet)$size <- c(30,20,20,20,20,20,25,20,20,20,20,20,20,20,20,20,20,20,20,20,20,25,20,20,20,20,20,20,20,25,20,20,
                    20,20,20,20,20,20,20,25,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20)
 
-legend.nodes <- data.frame (label = c("government figures (female)",
-                                      "government figures (male)",
-                                      "family and close friends (female)",
-                                      "family and close friends (male)",
-                                      "social reformers (female)",
-                                      "social reformers (male)",
-                                      "statisticians, scientists and academics (female)",
-                                      "statisticians, scientists and academics (male)"),
+legend.nodes <- data.frame (label = c("government figures\n(female)",
+                                      "government figures\n(male)",
+                                      "family and close friends\n(female)",
+                                      "family and close friends\n(male)",
+                                      "social reformers\n(female)",
+                                      "social reformers\n(male)",
+                                      "statisticians, scientists and academics\n(female)",
+                                      "statisticians, scientists and academics\n(male)"),
                             shape = c("square","dot","square","dot","square","dot",
                                       "square","dot"),size = rep(8,8),
                             color.background = c("#56B4E9","#56B4E9","#E69F00","#E69F00",
@@ -145,24 +145,33 @@ brokerage.norm <- as.data.frame(round(brokerage(fnnet2, cl=get.vertex.attribute(
   left_join(fnnet.membership.df,by=c("Alter" ="Name")) %>%
   mutate(Membership = as.factor(Membership))
 
-## brokerage plots ##########################################################################################################
+## brokerage plot ç##########################################################################################################
 
-values.raw <- brokerage.raw %>% group_by(Brokerage) %>% 
-  filter(Alter %in% c("Ada Lovelace","Parthenope Nightingale","Harriet Martineau","Lord Palmerston")) %>%
-  filter(Brokerage!="Itinerant")
+values.raw.1 <- brokerage.raw %>% group_by(Brokerage) %>% 
+  filter(Alter %in% c("Parthenope Nightingale","Harriet Martineau","Lord Palmerston")) %>%
+  filter(Brokerage!="Itinerant") 
 
-## fixed scale  (no outliers)
+values.raw.2<- brokerage.raw %>% group_by(Brokerage) %>% 
+  filter(Alter=="Dr William Farr" & Brokerage=="Liaison" |
+           Alter=="Ada Lovelace" & Brokerage %in% c("Representative","Gatekeeper","Coordinator"))  
+           
+values.raw.3<- brokerage.raw %>% group_by(Brokerage) %>% 
+  filter(Alter=="Dr William Farr" &  Brokerage %in% c("Representative","Gatekeeper","Coordinator") |
+           Alter=="Ada Lovelace" &  Brokerage=="Liaison")  
+
+
+## fixed scale, FN value not captured in plot
 
 ggplot(brokerage.raw %>% group_by(Brokerage) %>% 
-         filter(!Value %in% boxplot(brokerage.raw$Value)$out) %>%
+         filter(Alter!="Florence Nightingale") %>%
          filter(Brokerage!="Itinerant"),aes(x=Membership, y = Value,fill=Membership)) + 
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.1,outlier.shape = NA) +
   facet_wrap(~Brokerage,scales="fixed",ncol =2) +
-  scale_fill_manual(labels = c("1:family and close friends", 
-                               "2:statisticians, scientists and academics",
-                               "3:government figures",
-                               "4:social reformers"),
+  scale_fill_manual(labels = c("family and close friends", 
+                               "statisticians, scientists and academics",
+                               "government figures",
+                               "social reformers"),
                     values=c("#E69F00", "#CC79A7", "#56B4E9", "#009E73")) +
   ylab("raw brokerage scores") +
   theme_bw() +
@@ -170,36 +179,17 @@ ggplot(brokerage.raw %>% group_by(Brokerage) %>%
   theme(panel.grid.minor = element_blank()) + 
   theme(legend.position="bottom") +
   theme(strip.background = element_blank())+
-  theme(panel.border = element_rect(colour = "black"))+
-  theme(axis.title.x = element_blank(),axis.title.y = element_text(size=10,margin = margin(t = 0, r = 15, b = 0, l = 0)))+
-  geom_text(data = values.raw, aes(x = Membership, y = Value + 12, label = Alter), size = 3) +
-  geom_point(data = values.raw, aes(x = Membership, y = Value), shape=15,size = 2)
+  theme(panel.border = element_rect(colour = "black")) +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size=10,margin = margin(t = 0, r = 15, b = 0, l = 0))) +
+  geom_text(data = values.raw.1, aes(x = Membership, y = Value + 50, label = Alter), size = 3) +
+  geom_text(data = values.raw.2, aes(x = Membership, y = Value + 50, label = Alter), size = 3) +
+  geom_text(data = values.raw.3, aes(x = Membership, y = Value + 40, label = Alter), size = 3) +
+  geom_point(data = values.raw.1, aes(x = Membership, y = Value), shape=15,size = 2) +
+  geom_point(data = values.raw.2, aes(x = Membership, y = Value), shape=15,size = 2) +
+  geom_point(data = values.raw.3, aes(x = Membership, y = Value), shape=15,size = 2) 
 
-
-## free y scale (no outliers)
-
-ggplot(brokerage.raw %>% group_by(Brokerage) %>% 
-         filter(!Value %in% boxplot(brokerage.raw$Value)$out) %>%
-         filter(Brokerage!="Itinerant"),aes(x=Membership, y = Value,fill=Membership)) + 
-  geom_violin(trim=FALSE) +
-  geom_boxplot(width=0.1,outlier.shape = NA) +
-  facet_wrap(~Brokerage,scales="free_y",ncol =2) +
-  scale_fill_manual(labels = c("1:family and close friends", 
-                               "2:statisticians, scientists and academics",
-                               "3:government figures",
-                               "4:social reformers"),
-                    values=c("#E69F00", "#CC79A7", "#56B4E9", "#009E73")) +
-  ylab("raw brokerage scores") +
-  theme_bw() +
-  theme(panel.grid.major = element_blank()) +
-  theme(panel.grid.minor = element_blank()) + 
-  theme(legend.position="bottom") +
-  theme(strip.background = element_blank())+
-  theme(panel.border = element_rect(colour = "black"))+
-  theme(axis.title.x = element_blank(),axis.title.y = element_text(size=10,margin = margin(t = 0, r = 15, b = 0, l = 0)))+
-  geom_text(data = values.raw, aes(x = Membership, y = Value+12, label = Alter), size = 3) +
-  geom_point(data = values.raw, aes(x = Membership, y = Value), shape=15,size = 2)
-
-###############################################################################################################################
+##############################################################################################################################
 ###############################################################################################################################
 
