@@ -47,6 +47,11 @@ V(fnnet)$color <- ifelse(V(fnnet)$membership=="1","#E69F00",
 fnnet.membership.df <- data.frame(Name = fnnet.com.lou$names,
                                   Membership = fnnet.com.lou$membership)
 
+
+## modularity ############################################################################################################
+
+modularity(fnnet,membership(fnnet.com.lou))
+
 ## network plot ##########################################################################################################
 
 # set node size to highlight FN and relevant alters
