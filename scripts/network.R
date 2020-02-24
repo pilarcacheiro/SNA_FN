@@ -150,7 +150,7 @@ brokerage.norm <- as.data.frame(round(brokerage(fnnet2, cl=get.vertex.attribute(
   left_join(fnnet.membership.df,by=c("Alter" ="Name")) %>%
   mutate(Membership = as.factor(Membership))
 
-## brokerage plot ç##########################################################################################################
+## brokerage plot ##########################################################################################################
 
 values.raw.1 <- brokerage.raw %>% group_by(Brokerage) %>% 
   filter(Alter %in% c("Parthenope Nightingale","Harriet Martineau","Lord Palmerston")) %>%
@@ -195,6 +195,90 @@ ggplot(brokerage.raw %>% group_by(Brokerage) %>%
   geom_point(data = values.raw.2, aes(x = Membership, y = Value), shape=15,size = 2) +
   geom_point(data = values.raw.3, aes(x = Membership, y = Value), shape=15,size = 2) 
 
-##############################################################################################################################
-###############################################################################################################################
 
+## gender interactions ##########################################################################################################
+
+# nodes
+
+V(fnnet)
+
+nodes <-  V(fnnet)[1:56]
+
+network.nodes.df <- list()
+
+for(i in 1:56){
+  
+  name <- nodes[[i]]$name
+  gender <- nodes[[i]]$gender
+  shape <- nodes[[i]]$shape
+  membership <- nodes[[i]]$membership
+  color <- nodes[[i]]$color
+  
+  network.nodes.df[[i]] <- data.frame(name,gender,shape,membership,color)
+}
+
+
+fn.nodes.df <- do.call(rbind,network.nodes.df)
+
+
+fn.nodes.df %>%
+  group_by(gender) %>%
+  tally()
+
+total.nodes <- fn.nodes.df %>%
+  group_by(membership) %>%
+  tally() %>%
+  rename(n.all = n)
+
+fn.nodes.df %>%
+  group_by(gender,membership) %>%
+  tally() %>%
+  inner_join(total.nodes) %>%
+  mutate(percentage = n/n.all*100) 
+
+
+# edges
+
+E(fnnet)
+
+edges <- as_long_data_frame(fnnet) %>%
+  dplyr::select(from_name,to_name,from_gender,to_gender) %>%
+  mutate(edge_type = ifelse(from_gender =="F" & to_gender =="F","FF",
+                            ifelse(from_gender=="M" & to_gender=="M","MM","FM"))) %>%
+  dplyr::select(1,2,5) %>%
+  dplyr::rename(from = from_name, to = to_name, type = edge_type) %>%
+  mutate(weight = 1)
+
+
+edges.nodes <- edges %>%
+  inner_join(fn.nodes.df,by=c("from"="name")) %>%
+  dplyr::select(1,2,3,7) %>%
+  rename(membership.from = membership) %>%
+  inner_join(fn.nodes.df,by=c("to"="name")) %>% 
+  rename(membership.to = membership) %>%
+  dplyr::select(1,2,3,4,7) %>%
+  mutate(type.2 = ifelse(membership.from == membership.to,"within","between")) 
+
+
+edges.nodes %>%
+  group_by(type) %>%
+  tally() %>%
+  mutate(percentage = n/400*100)
+
+total.within <- edges.nodes %>%
+  filter(type.2 =="within") %>%
+  group_by(membership.to) %>%
+  tally %>%
+  rename(n.total = n)
+
+
+edges.nodes %>%
+  filter(type.2 =="within") %>%
+  group_by(type,membership.to) %>%
+  tally() %>%
+  inner_join(total.within) %>%
+  mutate(percentage = n/ n.total*100) %>%
+  arrange(membership.to)
+
+#########################################################################################################################
+#########################################################################################################################
